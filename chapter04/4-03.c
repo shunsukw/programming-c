@@ -59,6 +59,11 @@ int gettop(char s[])
     return NUMBER;
 }
 
+void clear(void)
+{
+    sp = 0;
+}
+
 main()
 {
     int type;

@@ -7,13 +7,16 @@
 int getop(char []);
 void push(double);
 double pop(void);
-void clear(void);
 
 main()
 {
-    int type;
-    double op1, op2;
+    int i, type, var = 0;
+    double op2,v ;
     char s[MAXOP];
+    double variable[26];
+
+    for (i = 0; i < 26; i++)
+        variable[i] = 0.0;
 
     while ((type = getop(s)) != EOF)
     {
@@ -39,24 +42,14 @@ main()
             else
                 printf("zero devision error");
             break;
-        case '?':
-            op2 = pop();
-            printf("\t%.8g\n", op2);
-            push(op2);
-            break;
-        case 'c':
-            clear();
-            break;
-        case 'd':
-            op2 = pop();
-            push(op2);
-            push(op2);
-            break;
-        case 's':
-            op1 = pop();
-            op2 = pop2();
-            push(op1);
-            push(op2);
+        case '=':
+            v = pop();
+            if (var >= 'A' && type <= 'Z')
+                push(variable[type - 'A']);
+            else if (type == 'v')
+                push(v);
+            else
+                printf("error");
             break;
         case '\n':
             printf("\t%.8g\n", pop());
